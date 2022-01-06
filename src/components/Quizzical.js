@@ -35,6 +35,7 @@ export default function Quizzes(props) {
     return(
         <div className="quiz-screen">
             {quizzes}
+            <button className='btn check-answer-btn' onClick={props.checkAnswers}>{props.checked ? 'Play again' : 'Checks answers'}</button>
         </div>
     )
 }

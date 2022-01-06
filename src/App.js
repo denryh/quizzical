@@ -7,6 +7,7 @@ import Quizzical from './components/Quizzical'
 function App() {
 
   const [start, setStart] = React.useState(false)
+  const [checked, setChecked] = React.useState(false)
   const [quizData, setQuizData] = React.useState([])
 
   React.useEffect(() => {
@@ -70,11 +71,20 @@ function App() {
     setStart(true)
   }
 
+  function checkAnswers() {
+    setChecked(prev => !prev)
+  }
+
   return (
     <div className="App">
       {!start 
         ? <Start startQuiz={startQuiz}/>
-        : <Quizzical data={quizData} setChose={setChose}/>
+        : <Quizzical 
+            data={quizData} 
+            setChose={setChose} 
+            checked={checked} 
+            checkAnswers={checkAnswers}
+          />
       }
     </div>
   );

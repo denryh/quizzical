@@ -98,7 +98,7 @@ hr {
 .answer {
   border: .5px solid #293264;
   border-radius: 8px;
-  padding: 2px 20px;
+  padding: 5px 20px;
   font-size: .8rem;
   font-weight: 500;
   color: #293264;
@@ -112,4 +112,15 @@ hr {
 
 .chose {
   background-color: #D6DBF5;
+}
+
+.check-answer-btn {
+  align-self: center;
+  background-color: #4D5B9E;
+  color: white;
+  padding: 12px 40px;
+  border-radius: 15px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
 }
