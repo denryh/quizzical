@@ -7,14 +7,16 @@ import Quizzical from './components/Quizzical'
 function App() {
 
   const [start, setStart] = React.useState(false)
-  const [checked, setChecked] = React.useState(false)
   const [quizData, setQuizData] = React.useState([])
+  const [checked, setChecked] = React.useState(false)
+  const [score, setScore] = React.useState(0)
+  const [attemps, setAttemps] = React.useState(0)
 
   React.useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5')
       .then(res => res.json())
       .then(data => setQuizData(modifyData(data.results)))
-  }, [])
+  }, [attemps])
 
   function modifyData(data) {
     const neededKeys = ['question', 'correct_answer', 'incorrect_answers']
@@ -25,10 +27,10 @@ function App() {
       }, {})
     })
 
-    const finalData = []
+    const newData = []
 
     for (let i = 0; i < filteredData.length; i++) {
-      const newData = {
+      const modifiedData = {
         'id': nanoid(),
         'question': filteredData[i].question,
         'answers': [
@@ -48,9 +50,11 @@ function App() {
             }
         ]
       }
-      finalData.push(newData)
+      newData.push(modifiedData)
     }
-    return finalData
+    // Shuffle answers before sending
+    newData.forEach(quiz => quiz.answers = quiz.answers.sort((a, b) => 0.5 - Math.random()))
+    return newData
   }
 
   function setChose(id, ansId) {
@@ -64,7 +68,6 @@ function App() {
             }
         )})
     })
-    console.log(quizData[0].answers[ansId])
   }
 
   function startQuiz() {
@@ -72,7 +75,19 @@ function App() {
   }
 
   function checkAnswers() {
-    setChecked(prev => !prev)
+    if (!checked) {
+      setChecked(true)
+      quizData.forEach(quiz => quiz.answers.forEach(ans => ans.correct && ans.isChose ? setScore(prev => prev + 1) : ""))
+    } else {
+      restart()
+    }
+  }
+  
+  function restart() {
+    setStart(false)
+    setChecked(false)
+    setScore(0)
+    setAttemps(prev => prev + 1)
   }
 
   return (
@@ -84,6 +99,7 @@ function App() {
             setChose={setChose} 
             checked={checked} 
             checkAnswers={checkAnswers}
+            score={score}
           />
       }
     </div>

@@ -110,12 +110,16 @@ hr {
   background:rgba(0, 0, 0, .3);
 }
 
-.chose {
-  background-color: #D6DBF5;
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #293264;
+  font-weight: 700;
 }
 
 .check-answer-btn {
-  align-self: center;
   background-color: #4D5B9E;
   color: white;
   padding: 12px 40px;
