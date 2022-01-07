@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/quizzical/static/css/main.9efbc134.css",
+    "main.js": "/quizzical/static/js/main.77645373.js",
+    "static/media/background.png": "/quizzical/static/media/background.22bb1b2444ff88fb12ba.png",
+    "index.html": "/quizzical/index.html",
+    "main.9efbc134.css.map": "/quizzical/static/css/main.9efbc134.css.map",
+    "main.77645373.js.map": "/quizzical/static/js/main.77645373.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9efbc134.css",
+    "static/js/main.77645373.js"
+  ]
+}
