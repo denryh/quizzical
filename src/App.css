@@ -135,6 +135,7 @@ hr {
 
   .start-screen {
     height: 100vh;
+    grid-column: 1;
   }
 
   .quiz-screen {
