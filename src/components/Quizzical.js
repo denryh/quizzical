@@ -29,7 +29,8 @@ export default function Quizzes(props) {
                             }
                             return {
                                 backgroundColor: bg,
-                                opacity: opacity
+                                opacity: opacity,
+                                cursor: props.checked ? 'default' : 'pointer'
                             }
                         }
                         const bg = findAnsBg()
@@ -38,7 +39,11 @@ export default function Quizzes(props) {
                                 key={ans.id}
                                 className='answer'
                                 style={bg}
-                                onClick={() => props.setChose(quiz.id, ans.id)}>
+                                onClick={() => {
+                                        if (!props.checked)
+                                            return props.setChose(quiz.id, ans.id)
+                                    }}
+                                >
                                     {decodeHtml(ans.answer)}
                             </div>
                         )
